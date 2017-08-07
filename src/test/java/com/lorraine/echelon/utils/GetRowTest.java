@@ -1,8 +1,5 @@
 package com.lorraine.echelon.utils;
 
-import com.lorraine.echelon.utils.ExcelInit;
-import com.lorraine.echelon.utils.ExcelUtil;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -14,7 +11,7 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 /**
- * Created by Administrator on 2017/8/7 0007.
+ * Created by xiaoout on 2017/8/7 0007.
  */
 public class GetRowTest {
     ResourceBundle resourceBundle;
