@@ -17,7 +17,7 @@ public class GetRowTest {
     ResourceBundle resourceBundle;
 
     @Before
-    public void getpath(){
+    public void getpath() {
 
         resourceBundle = ResourceBundle.getBundle("ehelon-path");
 
@@ -25,15 +25,4 @@ public class GetRowTest {
 
     }
 
-    @Test
-    public void getRow() throws IOException {
-        String path = this.getClass().getResource("/").getPath().toString().split("target")[0].toString();
-//        path = path + "src/main/resources/test.xlsx";
-        path = resourceBundle.getString("resources.path") + "test.xlsx";
-        System.out.println(path);
-        Workbook workbook = new XSSFWorkbook(path);
-        Sheet sheet = workbook.getSheetAt(0);
-        Row row = sheet.getRow(1);
-        System.out.println(row.getCell(1));
-    }
 }

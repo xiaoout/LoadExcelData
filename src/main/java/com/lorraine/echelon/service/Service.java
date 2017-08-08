@@ -1,8 +1,10 @@
 package com.lorraine.echelon.service;
 
 import com.lorraine.echelon.excelops.ExcelReader;
+import com.lorraine.echelon.fileops.FilesOps;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -11,13 +13,19 @@ import java.util.ResourceBundle;
 public class Service extends AbstractService {
 
     private ExcelReader excelReader;
+    private FilesOps filesOps;
 
-    public Service(String fileName,int sheetNo) throws IOException {
-        excelReader = new ExcelReader(fileName,sheetNo);
+    //TODO: the path is redundancy
+    public Service() throws IOException {
+        filesOps = new FilesOps();
     }
 
-    public void readData() {
-        
+    public void readData() throws IOException {
+        List<String> fileNames = filesOps.getFileNames();
+        for (String fileName : fileNames) {
+            excelReader = new ExcelReader(fileName, 0);
+            System.out.println(excelReader.getRowValues(0));
+        }
     }
 
     public void writeData() {

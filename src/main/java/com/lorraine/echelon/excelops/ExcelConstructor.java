@@ -1,17 +1,18 @@
 package com.lorraine.echelon.excelops;
 
+import com.lorraine.echelon.statics.PathConst;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ResourceBundle;
 
 /**
  * Created by cchen17 on 8/7/2017.
  */
 public class ExcelConstructor {
-    private static final String RootPath = ResourceBundle
-            .getBundle("ehelon-path")
-            .getString("resources.path");
+    private static final String RootPath = PathConst.directoryPath;
 
     private String path;
     private final XSSFWorkbook workbook;
@@ -27,7 +28,9 @@ public class ExcelConstructor {
     }
 
     public XSSFWorkbook createWorkBook() throws IOException {
-        return new XSSFWorkbook(this.path);
+        InputStream inputStream = new FileInputStream(path);
+
+        return new XSSFWorkbook(inputStream);
     }
 
 }

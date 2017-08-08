@@ -1,11 +1,11 @@
 package com.lorraine.echelon.excelops;
 
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,35 +42,40 @@ public class ExcelReader extends ExcelInfo {
         int colSize = this.getSheet().getRow(rowNo).getPhysicalNumberOfCells();
         List<String> rowValues = new ArrayList<String>();
         for (int i = 0; i < colSize; i++)
-            rowValues.add(getCellValue(rowNo,i));
+            rowValues.add(getCellValue(rowNo, i));
         return rowValues;
     }
 
-    public List<String> getColumnValues(int colNo){
+    public List<String> getColumnValues(int colNo) {
         int rowSize = this.getSheet().getPhysicalNumberOfRows();
         List<String> colValues = new ArrayList<String>();
-        for(int i = 0 ; i < rowSize ; i++)
-            colValues.add(getCellValue(i,colNo));
+        for (int i = 0; i < rowSize; i++)
+            colValues.add(getCellValue(i, colNo));
         return colValues;
     }
 
-    public String getCellValue(int rowNo, int columnNo){
-        return getCell(rowNo, columnNo).getStringCellValue();
+    public String getCellValue(int rowNo, int columnNo) {
+        XSSFCell cell = getCell(rowNo, columnNo);
+        if (cell.getCellTypeEnum() == CellType.STRING) {
+            return cell.getStringCellValue();
+        } else
+            return Double.toString(cell.getNumericCellValue());
     }
 
-    public String[][] getAllCellValues(){
+    public String[][] getAllCellValues() {
+        //TODO: to set array boundary
         String[][] allValues = new String[100][100];
 
         int rowSize = this.getSheet().getPhysicalNumberOfRows();
 
-        for (int i = 1 ; i < rowSize ; i++) {
+        for (int i = 0; i < rowSize; i++) {
             int colSize = this.getSheet().getRow(i).getPhysicalNumberOfCells();
-            for (int j = 1; j < colSize; j++) {
-                allValues[i][j] = getCellValue(i,j);
+            for (int j = 0; j < colSize; j++) {
+                allValues[i][j] = getCellValue(i, j);
             }
         }
 
         return allValues;
-    } 
+    }
 
 }
