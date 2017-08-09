@@ -5,9 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.lorraine.echelon</groupId>
-    <artifactId>echelon</artifactId>
+    <artifactId>echelon-data-db</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <modules>
+        <module>echelon-lib-exceldata</module>
+        <module>echelon-service</module>
+        <module>echelon-lib-jdbc</module>
+    </modules>
 
     <dependencies>
         <dependency>
@@ -17,7 +23,17 @@
         </dependency>
         <dependency>
             <groupId>com.lorraine.echelon</groupId>
-            <artifactId>load-excel-data</artifactId>
+            <artifactId>echelon-lib-exceldata</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lorraine.echelon</groupId>
+            <artifactId>echelon-lib-jdbc</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lorraine.echelon</groupId>
+            <artifactId>echelon-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
