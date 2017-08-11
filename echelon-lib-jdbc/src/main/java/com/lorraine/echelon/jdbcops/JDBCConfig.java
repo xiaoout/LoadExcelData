@@ -18,8 +18,8 @@ public class JDBCConfig {
 
     public JDBCConfig() {
         try {
-            Class.forName(driverName);
-            conn = DriverManager.getConnection("jdbc:sqlserver://127.0.0.1:1433;databasename=HRSYS", user, pass);
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            conn = DriverManager.getConnection(dbServer, user, pass);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
