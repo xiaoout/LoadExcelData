@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
  */
 public class DBConfigs {
     public final static String Driver_Name = ResourceBundle.getBundle("Config-echelon-lib-jdbc-sqlserver").getString("jdbc_driver");
-    public final static String DB_URL = ResourceBundle.getBundle("Config-echelon-lib-jdbc-sqlserver").getString("db_server");
+    public final static String DB_URL = ResourceBundle.getBundle("Config-echelon-lib-jdbc-sqlserver").getString("db_url");
     public final static String User = ResourceBundle.getBundle("Config-echelon-lib-jdbc-sqlserver").getString("user");
     public final static String pass = ResourceBundle.getBundle("Config-echelon-lib-jdbc-sqlserver").getString("pass");
 
