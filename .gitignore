@@ -2,3 +2,4 @@
 .idea/
 echelon-service/.idea/
 echelon-lib-jdbc/.idea/
+echelon-lib-jdbc/target/
