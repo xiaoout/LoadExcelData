@@ -15,6 +15,7 @@
         <module>echelon-service</module>
     </modules>
 
+
     <repositories>
         <repository>
             <id>nexus-aliyun</id>
