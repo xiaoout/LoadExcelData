@@ -14,11 +14,12 @@ public class JDBCConfig {
     private String dbServer = DBConfigs.DB_URL;
     private String user = DBConfigs.User;
     private String pass = DBConfigs.pass;
+
     private Connection conn;
 
     public JDBCConfig() {
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Class.forName(driverName);
             conn = DriverManager.getConnection(dbServer, user, pass);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,4 +31,5 @@ public class JDBCConfig {
     public Connection getConn() {
         return conn;
     }
+
 }

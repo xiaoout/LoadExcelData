@@ -39,10 +39,10 @@
 
     <profiles>
         <profile>
-            <id>test</id>
+            <id>xiaoout</id>
             <properties>
-                <env>xiaout</env><!--相当于定义一个变量 供下面使用-->
-                <myName>xiaout</myName><!--使用一个properties文件中未定义，但是其他地方会取值的变量-->
+                <env>xiaoout</env><!--相当于定义一个变量 供下面使用-->
+                <myName>xiaoout</myName><!--使用一个properties文件中未定义，但是其他地方会取值的变量-->
             </properties>
             <activation><!--默认激活-->
                 <activeByDefault>true</activeByDefault>
@@ -52,7 +52,7 @@
             <id>cchen17</id>
             <properties>
                 <env>dev</env>
-                <myName>李四</myName>
+                <myName>cchen17</myName>
             </properties>
             <activation><!--默认激活-->
                 <activeByDefault>false</activeByDefault>
@@ -60,7 +60,6 @@
         </profile>
     </profiles>
 
-    <pluginRepositories></pluginRepositories>
 
 
 </project>

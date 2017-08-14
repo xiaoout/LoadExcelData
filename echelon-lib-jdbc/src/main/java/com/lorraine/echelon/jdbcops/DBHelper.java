@@ -20,13 +20,18 @@ public class DBHelper extends JDBCConfig {
     }
 
 
-    public Connection conn() {
+    public Connection getConnection() {
         return super.getConn();
     }
 
-    public ResultSet getRs() {
+    public ResultSet getResultSet() {
         return rs;
     }
+
+    public PreparedStatement getPreparedStatement() {
+        return ps;
+    }
+
 
     public List<Object> getRow(String sql, int rowNo) {
         try {
@@ -60,9 +65,46 @@ public class DBHelper extends JDBCConfig {
 
     }
 
+    public boolean insertOp(String table,int id){
+        String sql = "insert into "+ table + "values()";
+        return false;
+    }
+
+
     public void close() {
         try {
+            rs.close();
+            if (stmt != null)
+                stmt.close();
+            if (ps != null)
+                ps.close();
             super.getConn().close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void closeConn() {
+        try {
+            super.getConn().close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void closeStatment() {
+        try {
+            rs.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void closePrepareStatment() {
+        try {
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
