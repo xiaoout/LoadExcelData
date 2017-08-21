@@ -3,3 +3,4 @@
 echelon-service/.idea/
 echelon-lib-jdbc/.idea/
 echelon-lib-jdbc/target/
+echelon-lib-jdbctemplate/target/
