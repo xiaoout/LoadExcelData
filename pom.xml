@@ -13,6 +13,7 @@
         <module>echelon-lib-exceldata</module>
         <module>echelon-lib-jdbc</module>
         <module>echelon-service</module>
+        <module>echelon-lib-jdbctemplate</module>
     </modules>
 
 
