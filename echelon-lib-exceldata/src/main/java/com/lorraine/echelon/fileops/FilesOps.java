@@ -11,9 +11,20 @@ import java.util.List;
 public class FilesOps extends FileConfigs {
 
     private String directoryName;
+    private String path;
+
+    public FilesOps() {
+        super();
+    }
+
+    public FilesOps(String dir) {
+        super();
+        path = this.RootPath + '/' + dir + '/';
+
+    }
 
     public List<File> getFiles() {
-        File directory = new File(this.RootPath);
+        File directory = new File(this.path);
         if (directory.isDirectory() && directory.exists()) {
             List<File> fileList = new ArrayList<File>(Arrays.asList(directory.listFiles()));
             return fileList;

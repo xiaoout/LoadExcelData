@@ -25,6 +25,7 @@ public class StudentDaoTest {
             System.out.println(stu.getpId() +" " + stu.getDate());
         }
     }
+
     @Test
     public void tes(){
         String str = this.getClass().getResource("/").getPath().split("target")[0];

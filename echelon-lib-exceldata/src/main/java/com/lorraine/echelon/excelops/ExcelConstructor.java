@@ -15,7 +15,13 @@ public class ExcelConstructor {
     private static final String RootPath = PathConst.directoryPath;
 
     private String path;
+    private String dir;
     private final XSSFWorkbook workbook;
+
+    public ExcelConstructor(String dir, String fileName) throws IOException {
+        this.path = RootPath + '/' + dir + '/' + fileName;
+        this.workbook = createWorkBook();
+    }
 
 
     public XSSFWorkbook getWorkbook() {
@@ -33,4 +39,7 @@ public class ExcelConstructor {
         return new XSSFWorkbook(inputStream);
     }
 
+    public String getPath() {
+        return path;
+    }
 }

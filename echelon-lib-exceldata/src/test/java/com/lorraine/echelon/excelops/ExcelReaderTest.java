@@ -7,6 +7,12 @@ import org.junit.Test;
  */
 public class ExcelReaderTest {
     @Test
+    public void getFormularValue() throws Exception {
+        ExcelReader excelReader = new ExcelReader("GTR", "qq.xlsx",0);
+        System.out.println(excelReader.getFormularValue(1,9));
+    }
+
+    @Test
     public void getRowValues() throws Exception {
         ExcelReader excelReader = new ExcelReader("test.xlsx", 0);
         System.out.println(excelReader.getRowValues(0));
@@ -21,6 +27,16 @@ public class ExcelReaderTest {
         System.out.println(excelReader.getColumnValues(1));
         System.out.println(excelReader.getColumnValues(2));
     }
+
+    @Test
+    public void getColumnValuesWithDir() throws Exception {
+        ExcelReader excelReader = new ExcelReader("GTR", "GTR_V_Tier_Equations.xlsx",0);
+        System.out.println(excelReader.getColumnValues(0));
+        System.out.println(excelReader.getColumnValues(1));
+        System.out.println(excelReader.getColumnValues(2));
+    }
+
+
 
     @Test
     public void getCell() throws Exception {

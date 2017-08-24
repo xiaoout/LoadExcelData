@@ -1,7 +1,9 @@
 package com.lorraine.echelon.excelops;
 
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 
 import java.io.IOException;
@@ -12,6 +14,10 @@ import java.util.List;
  * Created by cchen17 on 8/7/2017.
  */
 public class ExcelReader extends ExcelInfo {
+
+    public ExcelReader(String dir, String fileName, int sheetNum) throws IOException {
+        super(dir, fileName, 0);
+    }
 
     public ExcelReader(String fileName, int sheetNum) throws IOException {
         super(fileName, sheetNum);
@@ -78,4 +84,26 @@ public class ExcelReader extends ExcelInfo {
         return allValues;
     }
 
+    public List<String> getColumnFormularValues(int colNo) {
+        int rowSize = this.getSheet().getPhysicalNumberOfRows();
+        List<String> colValues = new ArrayList<String>();
+        for (int i = 0; i < rowSize; i++) {
+            String value = getFormularValue(i, colNo);
+            if (value != null) {
+                colValues.add(value);
+            }
+        }
+        return colValues;
+    }
+
+    public String getFormularValue(int rowNo, int columnNo) {
+        XSSFCell cell = getCell(rowNo, columnNo);
+        //TODO: to transfer into object
+        if (cell == null) return null;
+
+        FormulaEvaluator evaluator = this.getWorkbook().getCreationHelper().createFormulaEvaluator();
+        evaluator.evaluateInCell(cell);
+        return cell.getStringCellValue();
+
+    }
 }

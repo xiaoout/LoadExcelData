@@ -8,7 +8,7 @@ import java.io.IOException;
 public abstract class AbstractService {
 
     public abstract void readData() throws IOException;
-    public abstract void writeData();
+    public abstract void writeData() throws IOException;
 
 
 }

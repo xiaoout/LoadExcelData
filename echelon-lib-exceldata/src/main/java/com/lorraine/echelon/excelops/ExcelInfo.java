@@ -27,6 +27,11 @@ public class ExcelInfo extends ExcelConstructor {
         this.sheet = this.getWorkbook().getSheet(sheetName);
     }
 
+    public ExcelInfo(String dir, String fileName, int sheetNum) throws IOException {
+        super(dir,fileName);
+        this.sheet = this.getWorkbook().getSheetAt(sheetNum);
+    }
+
     public XSSFSheet getSheet() {
         return sheet;
     }

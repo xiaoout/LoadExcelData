@@ -1,6 +1,7 @@
 *.iml
 .idea/
-echelon-service/.idea/
+echelon-importExcelService/.idea/
 echelon-lib-jdbc/.idea/
 echelon-lib-jdbc/target/
 echelon-lib-jdbctemplate/target/
+echelon-lib-exceldata/target/
