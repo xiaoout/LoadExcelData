@@ -21,6 +21,7 @@ public class ImportServiceTest {
 
     @Test
     public void runInDB() {
+        service.runInDB("","");
     }
 
     @Test
@@ -38,6 +39,7 @@ public class ImportServiceTest {
         service.writeData();
         service.readData();
         service.contentOp();
-
     }
+
+
 }

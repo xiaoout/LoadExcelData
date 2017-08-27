@@ -22,8 +22,6 @@ import java.util.stream.Stream;
 public class ImportService extends AbstractService {
 
     private ImportExcelService service;
-    private ExcelReader reader;
-    private ExcelWriter writer;
     private String delSqls = "";
     private String sql_no_eql = "\"insert into gtr_tier1_regular_equation([CalculationTier],[Priority],[ExecCondition1],[ExecCondition2],[SkipCondition],[OutPutItem],[InPutItem],[FileSource],[IndustryCode],[IsDelete]) values(\"&B2&\",\"&A2&\",'\"&D2&\"','\"&E2&\"','\"&H2&\"','\"&F2&\"','\"&G2&\"','\"&C2&\"','V',\"&I2&\")\"";
     private String dirName = "GTR";
@@ -94,6 +92,7 @@ public class ImportService extends AbstractService {
 
     public void runInDB(String delSqls, String content) {
         ImportDao importDao = (ImportDao) ApplicationContextUtil.getBean("ImportDao");
-        importDao.insert(delSqls,content);
+        String selSql = "select top 2 * from mart.dbo.Dividend";
+        importDao.select(selSql);
     }
 }

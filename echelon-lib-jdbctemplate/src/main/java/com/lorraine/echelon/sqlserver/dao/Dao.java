@@ -15,16 +15,16 @@ public interface Dao {
      */
     void setDataSource(DataSource ds);
 
-    /**
-     * This is the method to be used to create a record in the Student table.
-     */
-    void create(String name, Integer age);
-
-    Student getStudent(Integer id);
-
-    /**
-     * This is the method to be used to list down all the records from the
-     * Student table.
-     */
-    List<Student> listStudents();
+//    /**
+//     * This is the method to be used to create a record in the Student table.
+//     */
+//    void create(String name, Integer age);
+//
+//    Student getStudent(Integer id);
+//
+//    /**
+//     * This is the method to be used to list down all the records from the
+//     * Student table.
+//     */
+//    List<Student> listStudents();
 }

@@ -5,3 +5,4 @@ echelon-lib-jdbc/.idea/
 echelon-lib-jdbc/target/
 echelon-lib-jdbctemplate/target/
 echelon-lib-exceldata/target/
+echelon-service/target/
