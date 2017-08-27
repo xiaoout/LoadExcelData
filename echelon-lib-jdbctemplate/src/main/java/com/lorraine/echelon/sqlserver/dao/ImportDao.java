@@ -40,15 +40,4 @@ public class ImportDao{
         }
     }
 
-    public void create(String name, Integer age) {
-
-    }
-
-    public Student getStudent(Integer id) {
-        return null;
-    }
-
-    public List<Student> listStudents() {
-        return null;
-    }
 }
