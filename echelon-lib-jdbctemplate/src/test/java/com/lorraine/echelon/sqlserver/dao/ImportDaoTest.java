@@ -18,7 +18,7 @@ public class ImportDaoTest {
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("application-beans.xml");
         ImportDao importDao = (ImportDao) context.getBean("ImportDao");
-        String selSql = "select top 2 * from mart.dbo.Dividend";
+        String selSql = "select top 2 * from MEDS.dbo.company_migrate_log";
         List<Map<String, Object>> list = importDao.select(selSql);
         System.out.println(list);
     }

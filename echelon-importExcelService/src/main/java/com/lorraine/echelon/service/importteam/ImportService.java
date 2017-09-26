@@ -1,20 +1,17 @@
 package com.lorraine.echelon.service.importteam;
 
-import com.lorraine.echelon.excelops.ExcelReader;
-import com.lorraine.echelon.excelops.ExcelWriter;
 import com.lorraine.echelon.service.AbstractService;
 import com.lorraine.echelon.service.ImportExcelService;
 import com.lorraine.echelon.service.importteam.entities.ImportEntity;
 import com.lorraine.echelon.sqlserver.dao.ImportDao;
 import com.lorraine.echelon.sqlserver.util.ApplicationContextUtil;
-import org.junit.FixMethodOrder;
 
-import javax.management.RuntimeErrorException;
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Created by cchen17 on 8/24/2017.
@@ -35,40 +32,56 @@ public class ImportService extends AbstractService {
         entity = new ImportEntity();
     }
 
-    public void writeData() throws IOException {
-        //write formular into excel
-        service.writeData(sql_no_eql);
+    public void service(){
+        writeData();
+        readData();
+        contentOp();
     }
 
-    public void readData() throws IOException {
+    public void writeData() {
+        //write formular into excel
+        try {
+            service.writeData(sql_no_eql);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readData(){
         //read formular
-        entity.setMap(service.readData1());
+        try {
+            entity.setMap(service.readData1());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void contentOp() {
         //save into 3 files and run in DB
         HashMap<String, List<String>> map = entity.getMap();
-        for(String fileName : map.keySet()){
+        for (String fileName : map.keySet()) {
             String content = getContent(map.get(fileName));
 
-            fileName = fileName.substring(0,fileName.indexOf('.')) + ".sql";
+            String tableName = fileName.substring(0, fileName.indexOf('.'));
+            fileName = tableName + ".sql";
 
             String path1 = savePath1 + fileName;
             String path2 = savePath2 + fileName;
             String path3 = savePath3 + fileName;
 
-            saveFile(path1,content);
-            runInDB(delSqls,content);
-
+            saveFile(path1, content);
+//            saveFile(path2, content);
+//            saveFile(path3, content);
+            runInDB(tableName, content);
         }
 
     }
 
-    private String getContent(List<String> list){
+    private String getContent(List<String> list) {
         return list.stream().collect(Collectors.joining("\n"));
     }
 
-    public void saveFile(String path, String content) {
+    private void saveFile(String path, String content) {
         File file = new File(path);
         try {
             file.createNewFile();
@@ -90,9 +103,12 @@ public class ImportService extends AbstractService {
         }
     }
 
-    public void runInDB(String delSqls, String content) {
+    private void runInDB(String tableName, String sqlContents) {
         ImportDao importDao = (ImportDao) ApplicationContextUtil.getBean("ImportDao");
-        String selSql = "select top 2 * from mart.dbo.Dividend";
-        importDao.select(selSql);
+        String setOn = "SET IDENTITY_INSERT MEDS.dbo." + tableName + " ON";
+        String setOff = "SET IDENTITY_INSERT MEDS.dbo." + tableName + " OFF";
+        //String delSql = "delete from MEDS.dbo." + tableName;
+
+        importDao.insert(setOn, sqlContents, setOff);
     }
 }

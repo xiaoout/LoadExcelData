@@ -61,7 +61,12 @@ public class ImportExcelService extends AbstractService {
     }
 
     private String sql_no_eql_byOrder(String str, int i) {
-        return str.replaceAll("2",String.valueOf(i));
+        String str_start = str.substring(0,str.indexOf("values"));
+        String str_end = str.substring(str.indexOf("values")).replaceAll("2",String.valueOf(i));
+
+        return str_start+str_end;
+
+//        return str.replaceAll("2",String.valueOf(i));
     }
 
     @Override
